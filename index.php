@@ -1,10 +1,7 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="UTF-8">
-        <title></title>
-    </head>
-    <body>
-        
-    </body>
-</html>
+<?php
+## index.php
+
+session_start();
+$msg = "";
+
+include_once 'views/index.tpl.php';
