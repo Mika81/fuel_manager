@@ -29,6 +29,7 @@ if(isset($_POST['connection']) && !empty($_POST['alias']) && !empty($_POST['pwd'
         $_SESSION['user']['alias'] = $current_user->alias;
         $_SESSION['user']['email'] = $current_user->email;
         $_SESSION['user']['address'] = $current_user->address;
+        $_SESSION['profil'] = true;
     else :
         $msg .= "Nom ou mot de passe incorrect";
     endif;
@@ -41,6 +42,8 @@ endif;
 if(isset($_POST['logout'])){
     unset($_SESSION['user']);
     session_destroy();
+    header('Location:http://'. BASE_URL);
+    exit();
 }
 
 /**
