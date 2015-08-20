@@ -22,10 +22,10 @@ class UserManager {
     /* ----------CREATE */
     public function add(User $user){
         $query = $this->db->prepare('INSERT INTO user SET alias=:alias, pwd=:pwd, address=:address, email=:email');
-        $query->bindValue(':alias', $user->alias());
-        $query->bindValue(':pwd', $user->pwd());
-        $query->bindValue(':address', $user->address());
-        $query->bindValue(':email', $user->email());
+        $query->bindValue(':alias', $user->getAlias());
+        $query->bindValue(':pwd', $user->getPwd());
+        $query->bindValue(':address', $user->getAddress());
+        $query->bindValue(':email', $user->getEmail());
         $query->execute();
     }
     
