@@ -9,10 +9,10 @@
 class User {
 
     private $user_id;
-    private $alias;
+    public $alias;
     private $pwd;
-    private $address;
-    private $email;
+    public $address;
+    public $email;
 
     public function __construct(array $data) {
         $this->hydrate($data);
