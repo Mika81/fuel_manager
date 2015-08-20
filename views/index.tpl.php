@@ -13,7 +13,11 @@ include_once 'nav.tpl.php';
         endif;
     else:
         $msg .= "La session n'est pas vide";
-    endif; ?>
+    endif;
+    if($_SESSION['profil']):
+        include_once('profil.tpl.php');
+    endif;
+    ?>
 </body>
 <?php
 include_once 'footer.html';
