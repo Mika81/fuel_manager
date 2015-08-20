@@ -7,9 +7,7 @@ function d($arg) {
     print_r($arg);
     print "</pre>";
 }
-/* DEBUG */
-print "<br>$ SESSION :";
-d($_SESSION);
-print "<br>$ POST :";
-d($_POST);
+
+/* DEFINE */
+define('BASE_URL', $_SERVER[HTTP_HOST]);
 /* -------------------- */

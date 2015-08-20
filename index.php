@@ -1,24 +1,23 @@
 <?php
 ## index.php
 
-session_start();
 $msg = "";
 require_once 'functions/functions.php';
 require_once 'controller/controller.php';
 
-$manager = new UserManager($db);
+session_start();
 
-/* Create user */
-if(isset($_POST['create'])){
-    $user = array(
-        'alias' => $_POST['alias'],
-        'pwd' => $_POST['pwd'],
-        'address' => $_POST['address'],
-        'email' => $_POST['email'],
-    );
-    $newUser = new User($user);
-    $manager->add($newUser);
-}
+$user_manager = new UserManager($db);
 
+require_once 'controller/UserController.class.php';
 
 include_once 'views/index.tpl.php';
+
+/* **** */
+print"<fieldset>";
+print "<br>$ SESSION :";
+d($_SESSION);
+print "<br>$ POST :";
+d($_POST);
+print"</fieldset>";
+/* **** */
