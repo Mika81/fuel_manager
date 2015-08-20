@@ -4,6 +4,9 @@
 
 require_once 'model/user/User.class.php';
 require_once 'model/user/UserManager.class.php';
+require_once 'model/vehicle/Vehicle.class.php';
+require_once 'model/vehicle/VehicleManager.class.php';
+
 
 /* Database informations ($host) */
 include_once 'functions/database_informations.php';
