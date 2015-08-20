@@ -42,7 +42,7 @@ class UserManager {
     }
 
     public function getList() {
-        /* Get user list */
+        /* Get users list */
     }
 
     /* ----------UPDATE */

@@ -50,7 +50,7 @@ class User {
     public function setUser_id($user_id) {
         $this->user_id = (int) $user_id;
         if ($user_id >= 1 && strlen($user_id) <= 4) {
-            $this->user_id = $user_id;
+            $this->user_id = (int) $user_id;
         }
     }
 
