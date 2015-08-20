@@ -41,3 +41,5 @@
         </tr>
     </tbody>
 </table>
+<?php
+include_once 'forms/add_vehicle.html';
