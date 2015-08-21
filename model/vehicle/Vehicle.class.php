@@ -14,6 +14,7 @@ class Vehicle {
     private $type;
     private $fuel_type;
     private $global_km;
+    private $user_id;
     
     public function __construct(array $data) {
         $this->hydrate($data);
@@ -34,6 +35,7 @@ class Vehicle {
     public function getType(){ return $this->type; }
     public function getFuel_type(){ return $this->fuel_type; }
     public function getGlobal_km(){ return $this->global_km; }
+    public function getUser_id(){ return $this->user_id; }
     
     public function setVehicle_id($vehicle_id){
         if ($vehicle_id >= 1 && strlen($vehicle_id) <= 4) {
@@ -67,6 +69,10 @@ class Vehicle {
     
     public function setGlobal_km($global_km) {
         $this->global_km = (int) $global_km;        
+    }
+    
+    public function setUser_id($user_id) {
+        $this->user_id = (int) $user_id;        
     }
 }
 
