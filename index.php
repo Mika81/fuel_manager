@@ -2,7 +2,7 @@
 ## index.php
 
 $msg = "";
-require_once 'functions/functions.php';
+require_once 'src/functions.php';
 require_once 'controller/controller.php';
 
 session_start();

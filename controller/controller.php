@@ -9,7 +9,7 @@ require_once 'model/vehicle/VehicleManager.class.php';
 
 
 /* Database informations ($host) */
-include_once 'functions/database_informations.php';
+include_once 'src/database_informations.php';
 
 /* Database connection */
 try {
