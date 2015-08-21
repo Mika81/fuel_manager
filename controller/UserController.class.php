@@ -18,14 +18,16 @@ if(isset($_POST['create'])) :
     endif;
 endif;
 
+/* Create SESSION */
 if(isset($_POST['connection']) && !empty($_POST['alias']) && !empty($_POST['pwd'])) :
     $user = array(
         'alias' => $_POST['alias'],
         'pwd' => $_POST['pwd'],
     );
     $current_user_exists = $user_manager->user_start_session($user);
-    if($current_user_exists):
+    if($current_user_exists) :
         $current_user = $user_manager->get($user);
+        $_SESSION['user']['user_id'] = $current_user->user_id;
         $_SESSION['user']['alias'] = $current_user->alias;
         $_SESSION['user']['email'] = $current_user->email;
         $_SESSION['user']['address'] = $current_user->address;
@@ -39,12 +41,12 @@ else :
     endif;
 endif;
 
-if(isset($_POST['logout'])){
+if(isset($_POST['logout'])) :
     unset($_SESSION['user']);
     session_destroy();
     header('Location:http://'. BASE_URL);
     exit();
-}
+endif;
 
 /**
  * Description of UserController

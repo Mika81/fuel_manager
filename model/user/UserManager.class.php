@@ -28,6 +28,7 @@ class UserManager {
         $query->bindValue(':address', $user->getAddress());
         $query->bindValue(':email', $user->getEmail());
         $query->execute();
+        $query->closeCursor();
     }
 
     /* ----------READ */
@@ -38,6 +39,7 @@ class UserManager {
         $query->bindValue(':pwd', hash('sha512', $user['pwd']));
         $query->execute();
         $data = $query->fetch(PDO::FETCH_ASSOC);
+        $query->closeCursor();
         return new User($data);
     }
 
@@ -65,11 +67,12 @@ class UserManager {
         $query->bindValue(':email', $user->getEmail());
         $query->execute();
         $data = $query->fetch(PDO::FETCH_ASSOC);
-        if (!empty($data)) {
+        $query->closeCursor();
+        if (!empty($data)):
             return true;
-        } else {
+        else :
             return false;
-        }
+        endif;
     }
 
     public function user_start_session(Array $user) {
@@ -78,11 +81,11 @@ class UserManager {
         $query->bindValue(':pwd', hash('sha512', $user['pwd']));
         $query->execute();
         $data = $query->fetch(PDO::FETCH_ASSOC);
-        if (!empty($data)) {
+        $query->closeCursor();
+        if (!empty($data)) :
             return true;
-        } else {
+        else :
             return false;
-        }
+        endif;
     }
-
 }

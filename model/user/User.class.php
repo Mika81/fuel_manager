@@ -8,7 +8,7 @@
  */
 class User {
 
-    private $user_id;
+    public $user_id;
     public $alias;
     private $pwd;
     public $address;
