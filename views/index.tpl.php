@@ -15,7 +15,10 @@ include_once 'nav.tpl.php';
         $msg .= "La session n'est pas vide";
     endif;
     if($_SESSION['profil']):
-        include_once('profil.tpl.php');
+        include_once 'profil.tpl.php';
+    endif;
+    if($_SESSION['manager']):
+        include_once 'manager.tpl.php';
     endif;
     ?>
 </body>
