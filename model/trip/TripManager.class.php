@@ -34,8 +34,21 @@ class TripManager {
 
     /* ----------READ */
 
-    public function get() {
-
+    public function getDate(Vehicle $vehicle) {
+        $query = $this->db->prepare('SELECT date '
+                . 'FROM trip '
+                . 'WHERE vehicle_id = :vehicle_id '
+                . 'ORDER BY date '
+                . 'DESC');
+        $query->bindValue(':vehicle_id', $vehicle->getVehicle_id(), PDO::PARAM_INT);
+        $query->execute();
+        $data = $query->fetch(PDO::FETCH_ASSOC);
+        $query->closeCursor();
+        if(empty($data)):
+            return false;
+        else :
+            return $data;
+        endif;
     }
 
     public function getList() {

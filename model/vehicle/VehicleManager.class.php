@@ -89,7 +89,7 @@ class VehicleManager {
         $query->bindValue(':fuel_type', $vehicle->getFuel_type(), PDO::PARAM_STR);
         $query->bindValue(':user_id', $vehicle->getUser_id(), PDO::PARAM_INT);
         $query->execute();
-        $data = $query->fetch(PDO::FETCH_ASSOC);
+        $data = $query->fetch(PDO::FETCH_ASSOC);    
         $query->closeCursor();
         if(!empty($data)):
             return true;
@@ -109,7 +109,7 @@ class VehicleManager {
         $data = $query->fetch(PDO::FETCH_ASSOC);
         $query->closeCursor();
         if(!empty($data)):
-            return $data;
+            return true;
         else:
             return false;
         endif;
