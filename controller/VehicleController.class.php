@@ -15,11 +15,11 @@ if(isset($_POST['create_vehicle'])) :
         $vehicle_object = new Vehicle($vehicle);
         $vehicle_exists = $vehicle_manager->exists($vehicle_object);
         if($vehicle_exists):
-            header('Location:http://'. BASE_URL);
+            header('Location:http://'. BASE_URL . '/?profil');
             $_SESSION['vehicle']['exists'] = 1;
             exit();
         else:
-            $vehicle_manager->add($vehicle_object);
+            $vehicle_manager->add($vehicle_object); 
         endif;
         $msg .= "Le véhicule a été ajouté à la liste de vos véhicule";
     else :
@@ -27,14 +27,8 @@ if(isset($_POST['create_vehicle'])) :
     endif;
 endif;
 
-/* Vehicle exists */
-if($_SESSION['vehicle']['exists']) :
-    $msg .= "Ce véhicule est déjà dans votre liste";
-    unset($_SESSION['vehicle']['exists']);
-endif;
-
-/* Create SESSION */
-if($_SESSION['profil']) :
+/* Create vehicle List */
+if($_GET['profil']) :
     $vehicle_list = $vehicle_manager->getList($_SESSION['user']['user_id']);
     if(empty($vehicle_list)) :
         $vehicle_list = "Pas encore de véhicule enregistré";
@@ -42,20 +36,12 @@ if($_SESSION['profil']) :
 endif;
 
 /* Vehicle is selected */
-if($_POST['vehicle_selected']) :
-    $vehicle_id = (int) $_POST['vehicle_selected'];
+if($_GET['manage_vehicle']) :
+    $vehicle_id = (int) $_GET['manage_vehicle'];
     $vehicle = array(
         'vehicle_id' => $vehicle_id,
     );
 $vehicle_object = $vehicle_manager->get($vehicle);
-$_SESSION['vehicle'] = array(
-    'vehicle_id' => $vehicle_object->getVehicle_id(),
-    'brand' => $vehicle_object->getBrand(),
-    'model' => $vehicle_object->getModel(),
-    'type' => $vehicle_object->getType(),
-    'fuel_type' => $vehicle_object->getFuel_type(),
-    'global_km' => $vehicle_object->getGlobal_km(),
-);
 endif;
 
 /* Vehicule to delete */
@@ -65,14 +51,43 @@ if(isset($_POST['vehicle_2_delete'])):
         'vehicle_id' => $vehicle_2_delete,
     );
     $vehicle_manager->delete($vehicle);
-    header('Location:http://'. BASE_URL);
+    header('Location:http://'. BASE_URL .'/?profil');
+    $_SESSION['vehicle']['deleted'] = 1;
+    exit();
 endif;
 
-/* View statistics for one vehicle */
-if(isset($_POST['manage_vehicle'])):
-    unset($_SESSION['profil']);
-    $_SESSION['manager']['vehicle'] = true;
+/* Manage vehicle trips */
+if(isset($_POST['new_trip'])) :
+    if(!empty($_POST['km']) && !empty($_POST['fuel_quantity']) && !empty($_POST['fuel_price'])) :
+        $new_trip = array(
+            'vehicle_id' => $vehicle_object->getVehicle_id(),
+            'distance' => (float) $_POST['km'],
+            'fuel_quantity' => (float) $_POST['fuel_quantity'],
+            'fuel_price' => (float) $_POST['fuel_price'],
+        );
+        $vehicle_trip = new Trip($new_trip);
+        d($vehicle_trip);
+        $new_global_km = $vehicle_object->getGlobal_km() + $vehicle_trip->getDistance();
+        $vehicle_manager->change_vehicle_global_km($vehicle_object, $new_global_km);
+        $trip_manager->add($vehicle_trip);
+        unset($_POST);
+        header('Location:http://'. BASE_URL .'/?profil');
+    else :
+        $msg .= 'Tous les champs doivent être complétés pour l\'ajout d\'un parcours';
+    endif;
 endif;
+
+/* Messages */
+if($_SESSION['vehicle']['exists']) :
+    $msg .= "Ce véhicule est déjà dans votre liste";
+    unset($_SESSION['vehicle']['exists']);
+endif;
+if($_SESSION['vehicle']['deleted']) : 
+    $msg .= "Le véhicule a été supprimé";
+    unset($_SESSION['vehicle']['deleted']);
+endif;
+
+
 
 /**
  * Description of VehicleController
