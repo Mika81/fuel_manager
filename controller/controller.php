@@ -6,6 +6,8 @@ require_once 'model/user/User.class.php';
 require_once 'model/user/UserManager.class.php';
 require_once 'model/vehicle/Vehicle.class.php';
 require_once 'model/vehicle/VehicleManager.class.php';
+require_once 'model/trip/Trip.class.php';
+require_once 'model/trip/TripManager.class.php';
 
 
 /* Database informations ($host) */
