@@ -16,11 +16,14 @@ if (empty($_SESSION['user'])) :
 else:
     $msg .= "La session n'est pas vide";
 endif;
-if ($_SESSION['profil']):
+if ($_GET['profil']):
     include_once 'profil.tpl.php';
 endif;
-if ($_SESSION['manager']):
+if ($_GET['manager']):
     include_once 'manager.tpl.php';
+endif;
+if ($_GET['stats']):
+    include_once 'stats.tpl.php';
 endif;
 ?>
 </body>
