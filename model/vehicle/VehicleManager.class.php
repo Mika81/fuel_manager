@@ -56,8 +56,18 @@ class VehicleManager {
     
     /* ----------UPDATE */
     
-    public function update(Vehicle $vehicle) {
-        /* Update selected vehicle */
+    public function update(Vehicle $vehicle, Trip $trip) {
+
+    }
+    
+    public function change_vehicle_global_km(Vehicle $vehicle, $new_global_km){
+        $query = $this->db->prepare('UPDATE vehicle '
+                . 'SET global_km = :km '
+                . 'WHERE vehicle_id = :vehicle_id');
+        $query->bindValue(':km', $new_global_km, PDO::PARAM_INT);
+        $query->bindValue(':vehicle_id', $vehicle->getVehicle_id(), PDO::PARAM_INT);
+        $query->execute();
+        $query->closeCursor();
     }
     
     /* ----------DELETE */
@@ -84,6 +94,23 @@ class VehicleManager {
         if(!empty($data)):
             return true;
         else :
+            return false;
+        endif;
+    }
+    
+    public function is_vehicle_owner(Vehicle $vehicle, $user_id){
+        $query = $this->db->prepare('SELECT date '
+                . 'FROM vehicle '
+                . 'WHERE vehicle_id = :vehicle_id '
+                . 'AND user_id = :user_id');
+        $query->bindValue(':vehicle_id', $vehicle->getVehicle_id(), PDO::PARAM_INT);
+        $query->bindValue(':user_id', $user_id, PDO::PARAM_INT);
+        $query->execute();
+        $data = $query->fetch(PDO::FETCH_ASSOC);
+        $query->closeCursor();
+        if(!empty($data)):
+            return $data;
+        else:
             return false;
         endif;
     }
