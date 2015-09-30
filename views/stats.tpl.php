@@ -6,7 +6,8 @@
 <h4>Kilométrage total: <?php echo $vehicle_object->getGlobal_km(); ?> km</h4>
 <p>Consommation moyenne: ?? /100km</p>
 <p>Coût moyen: ?? €/km</p>
-<p>Date du dernier plein: <?php echo date('d/m/Y à H:i', strtotime($last_modif)); ?></p>
+<?php if($last_modif) : $last_modif = date('d/m/Y à H:i', strtotime($last_modif)); else : $last_modif = 'Pas encore de parcours.'; endif; ?>
+<p>Date du dernier plein: <?php print $last_modif; ?></p>
 <p>Carburant total utilisé depuis le jj/mm/aaaa : ?? litres</p>
 <p>Coût total utilisé depuis le jj/mm/aaaa : ?? €</p>
 
