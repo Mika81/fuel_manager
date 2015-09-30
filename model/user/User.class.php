@@ -8,11 +8,11 @@
  */
 class User {
 
-    public $user_id;
-    public $alias;
+    private $user_id;
+    private $alias;
     private $pwd;
-    public $address;
-    public $email;
+    private $address;
+    private $email;
 
     public function __construct(array $data) {
         $this->hydrate($data);
@@ -48,7 +48,6 @@ class User {
     }
 
     public function setUser_id($user_id) {
-        $this->user_id = (int) $user_id;
         if ($user_id >= 1 && strlen($user_id) <= 4) {
             $this->user_id = (int) $user_id;
         }
