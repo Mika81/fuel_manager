@@ -27,11 +27,10 @@ if(isset($_POST['connection']) && !empty($_POST['alias']) && !empty($_POST['pwd'
     $current_user_exists = $user_manager->user_start_session($user);
     if($current_user_exists) :
         $current_user = $user_manager->get($user);
-        $_SESSION['user']['user_id'] = $current_user->user_id;
-        $_SESSION['user']['alias'] = $current_user->alias;
-        $_SESSION['user']['email'] = $current_user->email;
-        $_SESSION['user']['address'] = $current_user->address;
-        $_SESSION['profil'] = true;
+        $_SESSION['user']['user_id'] = $current_user->getUser_id();
+        $_SESSION['user']['alias'] = $current_user->getAlias();
+        $_SESSION['user']['email'] = $current_user->getEmail();
+        $_SESSION['user']['address'] = $current_user->getAddress();
     else :
         $msg .= "Nom ou mot de passe incorrect";
     endif;
