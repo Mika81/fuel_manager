@@ -68,7 +68,7 @@ class Vehicle {
     }
     
     public function setGlobal_km($global_km) {
-        $this->global_km = (int) $global_km;        
+        $this->global_km = (float) $global_km;        
     }
     
     public function setUser_id($user_id) {
