@@ -1,13 +1,13 @@
 <?php
 
-## model/user/UserManager.class.php
+## model/user/TripManager.class.php
 
 /**
- * Description of UserManager
+ * Description of TripManager
  *
  * @author mika
  */
-class UserManager {
+class TripManager {
 
     private $db;
 
@@ -21,71 +21,36 @@ class UserManager {
 
     /* ----------CREATE */
 
-    public function add(User $user) {
-        $query = $this->db->prepare('INSERT INTO user SET alias=:alias, pwd=:pwd, address=:address, email=:email');
-        $query->bindValue(':alias', $user->getAlias());
-        $query->bindValue(':pwd', $user->getPwd());
-        $query->bindValue(':address', $user->getAddress());
-        $query->bindValue(':email', $user->getEmail());
+    public function add(Trip $trip) {
+        $query = $this->db->prepare('INSERT INTO trip '
+                . 'SET vehicle_id = :vehicle_id, distance = :distance, fuel_quantity = :fuel_quantity, fuel_price = :fuel_price');
+        $query->bindValue(':vehicle_id', $trip->getVehicle_id(), PDO::PARAM_STR);
+        $query->bindValue(':distance', $trip->getDistance(), PDO::PARAM_STR);
+        $query->bindValue(':fuel_quantity', $trip->getFuel_quantity(), PDO::PARAM_STR);
+        $query->bindValue(':fuel_price', $trip->getFuel_price(), PDO::PARAM_STR);
         $query->execute();
         $query->closeCursor();
     }
 
     /* ----------READ */
 
-    public function get(Array $user) {
-        $query = $this->db->prepare('SELECT * FROM user WHERE alias=:alias AND pwd=:pwd');
-        $query->bindValue(':alias', $user['alias']);
-        $query->bindValue(':pwd', hash('sha512', $user['pwd']));
-        $query->execute();
-        $data = $query->fetch(PDO::FETCH_ASSOC);
-        $query->closeCursor();
-        return new User($data);
+    public function get() {
+
     }
 
     public function getList() {
-        /* Get users list */
+        
     }
 
     /* ----------UPDATE */
 
-    public function update(User $user) {
-        /* Update current user */
+    public function update(Trip $trip) {
+        
     }
 
     /* ----------DELETE */
 
-    public function delete(User $user) {
-        /* Delete current user */
-    }
-
-    /* ----------ALIAS/EMAIL EXISTS? */
-
-    public function exists(User $user) {
-        $query = $this->db->prepare('SELECT * FROM user WHERE alias=:alias OR email=:email');
-        $query->bindValue(':alias', $user->getAlias());
-        $query->bindValue(':email', $user->getEmail());
-        $query->execute();
-        $data = $query->fetch(PDO::FETCH_ASSOC);
-        $query->closeCursor();
-        if (!empty($data)):
-            return true;
-        else :
-            return false;
-        endif;
-    }
-
-    public function user_start_session(Array $user) {
-        $query = $this->db->prepare('SELECT * FROM user WHERE alias=:alias AND pwd=:pwd');
-        $query->bindValue(':alias', $user['alias']);
-        $query->bindValue(':pwd', hash('sha512', $user['pwd']));
-        $query->execute();
-        $data = $query->fetch(PDO::FETCH_ASSOC);
-        $query->closeCursor();
-        if (!empty($data)) :
-            return true;
-        else :
-            return false;
-        endif;
+    public function delete() {
+        
     }
 }

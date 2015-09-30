@@ -1,18 +1,18 @@
 <?php
-## model/user/User.class.php
+## model/user/Trip.class.php
 
 /**
- * Description of User
+ * Description of Trip
  *
  * @author mika
  */
-class User {
+class Trip {
 
-    public $user_id;
-    public $alias;
-    private $pwd;
-    public $address;
-    public $email;
+    private $trip_id;
+    private $vehicle_id;
+    private $distance;
+    private $fuel_quantity;
+    private $fuel_price;
 
     public function __construct(array $data) {
         $this->hydrate($data);
@@ -27,53 +27,47 @@ class User {
         }
     }
 
-    public function getUser_id() {
-        return $this->user_id;
+    public function getTrip_id() {
+        return $this->trip_id;
     }
 
-    public function getAlias() {
-        return $this->alias;
+    public function getVehicle_id() {
+        return $this->vehicle_id;
     }
 
-    public function getPwd() {
-        return $this->pwd;
+    public function getDistance() {
+        return $this->distance;
     }
 
-    public function getAddress() {
-        return $this->address;
+    public function getFuel_quantity() {
+        return $this->fuel_quantity;
+    }
+    
+    public function getFuel_price() {
+        return $this->fuel_price;
     }
 
-    public function getEmail() {
-        return $this->email;
-    }
-
-    public function setUser_id($user_id) {
-        $this->user_id = (int) $user_id;
-        if ($user_id >= 1 && strlen($user_id) <= 4) {
-            $this->user_id = (int) $user_id;
+    public function setTrip_id($trip_id) {
+        if ($trip_id >= 1 && strlen($trip_id) <= 11) {
+            $this->trip_id = (int) $trip_id;
         }
     }
 
-    public function setAlias($alias) {
-        if (strlen($alias) <= 64 && is_string($alias)) {
-            $this->alias = $alias;
+    public function setVehicle_id($vehicle_id) {
+        if ($vehicle_id >= 1 && strlen($vehicle_id) <= 11) {
+            $this->vehicle_id = (int) $vehicle_id;
         }
     }
 
-    public function setPwd($pwd) {
-        $this->pwd = hash('sha512', $pwd);
+    public function setDistance($distance) {
+        $this->distance = (float) $distance;
     }
-
-    public function setAddress($address) {
-        if (strlen($address) <= 255 && is_string($address)) {
-            $this->address = $address;
-        }
+    
+    public function setFuel_quantity($fuel_quantity) {
+        $this->fuel_quantity = (float) $fuel_quantity;
     }
-
-    public function setEmail($email) {
-        if (strlen($email) <= 48 && is_string($email)) {
-            $this->email = $email;
-        }
+    
+    public function setFuel_price($fuel_price) {
+        $this->fuel_price = (float) $fuel_price;
     }
-
 }
