@@ -6,3 +6,30 @@
 .container-global{
     padding:10px;
 }
+
+footer{
+    text-align: center;
+}
+
+.m-bottom-50{
+    margin-bottom: 50px;
+}
+
+.m-top-5{
+    margin-top: 5px;
+}
+.m-top-10{
+    margin-top: 10px;
+}
+
+.m-right-10{
+    margin-right: 10px; 
+}
+
+.m-right-20{
+    margin-right: 20px; 
+}
+
+.padd-15{
+    padding: 15px;
+}
