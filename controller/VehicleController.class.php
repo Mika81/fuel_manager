@@ -71,7 +71,7 @@ if(isset($_POST['new_trip'])) :
         $vehicle_manager->change_vehicle_global_km($vehicle_object, $new_global_km);
         $trip_manager->add($vehicle_trip);
         unset($_POST);
-        header('Location:http://'. BASE_URL .'/?profil');
+        header('Location:http://'. BASE_URL .'/?stats='.$vehicle_object->getVehicle_id());
     else :
         $msg .= 'Tous les champs doivent être complétés pour l\'ajout d\'un parcours';
     endif;

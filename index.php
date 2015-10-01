@@ -4,9 +4,10 @@
 $msg = "";
 require_once 'src/functions.php';
 require_once 'controller/controller.php';
-require_once 'controller/router.php';
 
 session_start();
+
+require_once 'controller/router.php';
 
 $user_manager = new UserManager($db);
 $vehicle_manager = new VehicleManager($db);
@@ -18,7 +19,7 @@ require_once 'controller/TripController.class.php';
 
 include_once 'views/index.tpl.php';
 
-/* **** */
+/* ****
 print"<fieldset>";
 print "<br>$ SESSION :";
 d($_SESSION);
