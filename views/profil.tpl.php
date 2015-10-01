@@ -49,9 +49,9 @@ if (is_array($vehicle_list)) :
                     print "<td>" . ucfirst($value['type']) . "</td>";
                     print "<td>" . ucfirst($value['fuel_type']) . "</td>";
                     print "<td>" . ucfirst($value['global_km']) . " km</td>";
-                    print "<td><form method='post' action='?manage_vehicle=".$value['vehicle_id']."'><button type='submit' name='manage_vehicle' value='".$value['vehicle_id']."'>Ajouter un parcours</button></form></td>";
-                    print "<td><form method='post' action='?stats=".$value['vehicle_id']."'><button type='submit' name='stats' value='".$_SESSION['vehicle']['vehicle_id']."'>Stats</button></form></td>";
-                    print "<td><form method='post'><button type='submit' name='vehicle_2_delete' value='".$value['vehicle_id']."'>X</button></form></td>";
+                    print "<td><form method='post' action='?manage_vehicle=".$value['vehicle_id']."'><button type='submit' class='btn btn-success' name='manage_vehicle' value='".$value['vehicle_id']."'>Ajouter un parcours</button></form></td>";
+                    print "<td><form method='post' action='?stats=".$value['vehicle_id']."'><button type='submit' class='btn btn-info' name='stats' value='".$_SESSION['vehicle']['vehicle_id']."'>Stats</button></form></td>";
+                    print "<td><form method='post'><button type='submit' class='btn btn-danger' name='vehicle_2_delete' value='".$value['vehicle_id']."'>X</button></form></td>";
                     print "<tr>";
                 endforeach;
                 ?>

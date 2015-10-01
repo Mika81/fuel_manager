@@ -26,6 +26,7 @@ if ($_GET['stats']):
     include_once 'stats.tpl.php';
 endif;
 ?>
+</div> <!-- End .container-fluid .container-global -->
 </body>
 <?php
 include_once 'footer.html';
