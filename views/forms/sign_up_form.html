@@ -1,12 +1,11 @@
-<h1>Créer un compte</h1>
-<div id="login-form">
+<div id="login-form" class='padd-15'>
     <form action="" method="POST">
-        <div class="form-group clearfix">
-            <input type="text" name="alias" placeholder="Pseudo" class="form-control" />
-            <input type="password" name="pwd" placeholder="Mot de passe" class="form-control" />
-            <textarea name="address" placeholder="Adresse" class="form-control"></textarea>
-            <input type="email" name="email" placeholder="E-mail" class="form-control" />
-            <input type="submit" name="create" class="btn btn-default" value="Créer un compte"/>
+        <div class="form-group">
+            <input type="text" name="alias" placeholder="Pseudo" class="form-control" required/>
+            <input type="password" name="pwd" placeholder="Mot de passe" class="form-control m-top-5" required/>
+            <input type="email" name="email" placeholder="E-mail" class="form-control m-top-5" required/>
+            <textarea name="address" placeholder="Adresse" class="form-control m-top-5" required></textarea> 
+            <input type="submit" name="create" class="btn btn-default m-top-10" value="Créer un compte"/>
         </div>
     </form>
 </div>

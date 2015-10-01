@@ -1,12 +1,18 @@
-<div id="login-form">
-    <form action="?profil" method="POST">
-        <div class="form-group clearfix">
-            <input type="text" name="alias" placeholder="Pseudo" class="form-control" />
-            <input type="password" name="pwd" placeholder="Mot de passe" class="form-control" />
-            <input type="submit" name="connection" class="btn btn-default" value="Se connecter"/>
-        </div>
-    </form>
+<div id="login-form" class='padd-15'>
+    <div class="form-group">
+        <form action="/?profil=1" method="POST">
+            <div class="form-group clearfix">
+                <input type="text" name="alias" placeholder="Pseudo" class="form-control" required/>
+                <input type="password" name="pwd" placeholder="Mot de passe" class="form-control m-top-5" required/>
+                <input type="submit" name="connection" class="btn btn-default  m-top-5" value="Se connecter"/>
+            </div>
+        </form>
+    </div>
+ 
+   <div class="form-group">
+        <form method="post">
+            <button type="submit" name="signup" class="btn btn-default" value="1">Créer un compte !</button>
+        </form>       
+    </div>
 </div>
-<form method="post">
-    <button type="submit" name="signup" value="1">Créer un compte !</button>
-</form>
+

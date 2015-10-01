@@ -1,21 +1,43 @@
 <h3>Ajouter un véhicule</h3>
-<div id="login-form">
-    <form action="" method="POST">
-        <div class="form-group clearfix">
+<!--<div id="login-form">-->
+<form class="form-horizontal" action="" method="POST">
+    <div class="form-group">
+        <div class="col-sm-10">
             <input type="text" name="brand" placeholder="Marque" class="form-control" />
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-sm-10">
             <input type="text" name="model" placeholder="Modèle" class="form-control" />
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-sm-10">
             <select name="type">
                 <option selected="selected" value="voiture">Voiture</option>
                 <option value="moto">Moto</option>
                 <option value="autre">Autre</option>
             </select>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-sm-10">
             <select name="fuel_type">
                 <option selected="selected" value="essence">Essence</option>
                 <option value="diesel">Diesel</option>
                 <option value="hybride">Hybride</option>
             </select>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-sm-10">
             <input type="number" name="global_km" placeholder="Kilométrage du véhicule" class="form-control" />
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-sm-10">
             <input type="submit" name="create_vehicle" class="btn btn-default" value="Créer un véhicule"/>
         </div>
-    </form>
-</div>
+    </div>
+</form>
+<!--</di    v>-->
