@@ -24,10 +24,10 @@ class TripManager {
     public function add(Trip $trip) {
         $query = $this->db->prepare('INSERT INTO trip '
                 . 'SET vehicle_id = :vehicle_id, distance = :distance, fuel_quantity = :fuel_quantity, fuel_price = :fuel_price');
-        $query->bindValue(':vehicle_id', $trip->getVehicle_id(), PDO::PARAM_STR);
-        $query->bindValue(':distance', $trip->getDistance(), PDO::PARAM_STR);
-        $query->bindValue(':fuel_quantity', $trip->getFuel_quantity(), PDO::PARAM_STR);
-        $query->bindValue(':fuel_price', $trip->getFuel_price(), PDO::PARAM_STR);
+        $query->bindValue(':vehicle_id', $trip->getVehicle_id(), PDO::PARAM_INT);
+        $query->bindValue(':distance', $trip->getDistance(), PDO::PARAM_INT);
+        $query->bindValue(':fuel_quantity', $trip->getFuel_quantity(), PDO::PARAM_INT);
+        $query->bindValue(':fuel_price', $trip->getFuel_price(), PDO::PARAM_INT);
         $query->execute();
         $query->closeCursor();
     }

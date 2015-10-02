@@ -23,10 +23,10 @@ class UserManager {
 
     public function add(User $user) {
         $query = $this->db->prepare('INSERT INTO user SET alias=:alias, pwd=:pwd, address=:address, email=:email');
-        $query->bindValue(':alias', $user->getAlias());
+        $query->bindValue(':alias', $this->db->quote($user->getAlias()), PDO::PARAM_STR);
         $query->bindValue(':pwd', $user->getPwd());
-        $query->bindValue(':address', $user->getAddress());
-        $query->bindValue(':email', $user->getEmail());
+        $query->bindValue(':address', $this->db->quote($user->getAddress()), PDO::PARAM_STR);
+        $query->bindValue(':email', $this->db->quote($user->getEmail()), PDO::PARAM_STR);
         $query->execute();
         $query->closeCursor();
     }
@@ -35,7 +35,7 @@ class UserManager {
 
     public function get(Array $user) {
         $query = $this->db->prepare('SELECT * FROM user WHERE alias=:alias AND pwd=:pwd');
-        $query->bindValue(':alias', $user['alias']);
+        $query->bindValue(':alias', $this->db->quote($user['alias']), PDO::PARAM_STR);
         $query->bindValue(':pwd', hash('sha512', $user['pwd']));
         $query->execute();
         $data = $query->fetch(PDO::FETCH_ASSOC);
@@ -63,8 +63,8 @@ class UserManager {
 
     public function exists(User $user) {
         $query = $this->db->prepare('SELECT * FROM user WHERE alias=:alias OR email=:email');
-        $query->bindValue(':alias', $user->getAlias());
-        $query->bindValue(':email', $user->getEmail());
+        $query->bindValue(':alias', $this->db->quote($user->getAlias()), PDO::PARAM_STR);
+        $query->bindValue(':email', $this->db->quote($user->getEmail()), PDO::PARAM_STR);
         $query->execute();
         $data = $query->fetch(PDO::FETCH_ASSOC);
         $query->closeCursor();
@@ -77,7 +77,7 @@ class UserManager {
 
     public function user_start_session(Array $user) {
         $query = $this->db->prepare('SELECT * FROM user WHERE alias=:alias AND pwd=:pwd');
-        $query->bindValue(':alias', $user['alias']);
+        $query->bindValue(':alias', $this->db->quote($user['alias']), PDO::PARAM_STR);
         $query->bindValue(':pwd', hash('sha512', $user['pwd']));
         $query->execute();
         $data = $query->fetch(PDO::FETCH_ASSOC);

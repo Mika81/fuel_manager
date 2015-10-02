@@ -14,6 +14,10 @@ if(isset($_GET['stats']) && empty($_SESSION)) :
     $_GET['profil'] = 0 ; 
 endif;
 
+if($_POST['signup']):
+    $_GET['profil'] = 0 ;
+endif;
+
 /* -> manage vehicle */
 if(isset($_GET['manage_vehicle'])): 
     $_GET['manager'] = true ; 

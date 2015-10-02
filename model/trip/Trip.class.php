@@ -60,14 +60,20 @@ class Trip {
     }
 
     public function setDistance($distance) {
-        $this->distance = (float) $distance;
+        if (is_numeric($distance)){
+            $this->distance = (float) $distance;
+        }
     }
     
     public function setFuel_quantity($fuel_quantity) {
-        $this->fuel_quantity = (float) $fuel_quantity;
+        if (is_numeric($fuel_quantity)){
+            $this->fuel_quantity = (float) $fuel_quantity;
+        }
     }
     
     public function setFuel_price($fuel_price) {
-        $this->fuel_price = (float) $fuel_price;
+        if (is_numeric($fuel_price)){
+            $this->fuel_price = (float) $fuel_price;
+        }
     }
 }

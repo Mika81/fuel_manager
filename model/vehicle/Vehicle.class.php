@@ -68,11 +68,15 @@ class Vehicle {
     }
     
     public function setGlobal_km($global_km) {
-        $this->global_km = (float) $global_km;        
+        if (is_numeric($global_km)){
+            $this->global_km = (float) $global_km;
+        }
     }
     
     public function setUser_id($user_id) {
-        $this->user_id = (int) $user_id;        
+        if (is_numeric($user_id)){
+            $this->user_id = (int) $user_id;
+        }
     }
 }
 
