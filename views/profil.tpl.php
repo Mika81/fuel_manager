@@ -1,67 +1,69 @@
 <?php
 ##  views/profil.tpl.php
 ?>
-<h2>Mon profil</h2>
-<h3>Mes coordonnées</h3>
-<div class="table-responsive">
-    <table class="table table-striped">
-        <thead>
-            <tr>
-                <th>Nom</th>
-                <th>Adresse</th>
-                <th>E-mail</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td><?php print ucfirst($_SESSION['user']['alias']); ?></td>
-                <td><?php print $_SESSION['user']['address']; ?></td>
-                <td><?php print $_SESSION['user']['email']; ?></td>
-            </tr>
-        </tbody>
-    </table>
+<h1>Mon profil</h1>
+<div class="panel panel-default">
+    <div class="panel-heading">Mes coordonnées<a href='#'><span class='pull-right glyphicon glyphicon-edit'></span></a></div>
+    <div class="panel-body">
+        <p>Nom : <?php print ucfirst($_SESSION['user']['alias']); ?></p>
+        <p>E-mail : <?php print ucfirst($_SESSION['user']['email']); ?></p>
+        <p>Adresse : <?php print ucfirst($_SESSION['user']['address']); ?></p>
+    </div>
 </div>
-
-<h3>Mes véhicules</h3>
-<?php
-if (is_array($vehicle_list)) :
-    ?>
-    <div class="table-responsive">
-        <table class="table table-striped">
-            <thead>
-                <tr>
-                    <th>Marque</th>
-                    <th>Modèle</th>
-                    <th>Type</th>
-                    <th>Carburant</th>
-                    <th>Kilométrage</th>
-                    <th>Gérer le véhicule</th>
-                    <th>Voir les statistiques de ce véhicule</th>
-                    <th>Supprimer</th>
-                </tr>
-            </thead>
-            <tbody>
+<div class="panel panel-default">
+    <div class="panel-heading">Mes véhicules</div>
+    <div class="panel-body">
+        <?php
+        if (is_array($vehicle_list)) :
+            ?>
+            <div class="list-group">
                 <?php
                 foreach ($vehicle_list as $key => $value) :
-                    print "<tr>";
-                    print "<td>" . ucfirst($value['brand']) . "</td>";
-                    print "<td>" . ucfirst($value['model']) . "</td>";
-                    print "<td>" . ucfirst($value['type']) . "</td>";
-                    print "<td>" . ucfirst($value['fuel_type']) . "</td>";
-                    print "<td>" . ucfirst($value['global_km']) . " km</td>";
-                    print "<td><form method='post' action='?manage_vehicle=".$value['vehicle_id']."'><button type='submit' class='btn btn-success' name='manage_vehicle' value='".$value['vehicle_id']."'>Ajouter un parcours</button></form></td>";
-                    print "<td><form method='post' action='?stats=".$value['vehicle_id']."'><button type='submit' class='btn btn-info' name='stats' value='".$_SESSION['vehicle']['vehicle_id']."'>Stats</button></form></td>";
-                    print "<td><form method='post'><button type='submit' class='btn btn-danger' name='vehicle_2_delete' value='".$value['vehicle_id']."'>X</button></form></td>";
-                    print "<tr>";
-                endforeach;
-                ?>
-            </tbody>
-        </table>
+                    ?>
+                    <div class="list-group-item m-bottom-20">
+                        <div class='row'>
+                            <div class='col-md-8 pull-left'>
+                                <h4 class="list-group-item-heading"><?php echo ucfirst($value['brand']) .' '. ucfirst($value['model']) ?></h4>
+                                <p class="list-group-item-text">Type: <?php echo ucfirst($value['type']) ?><br>
+                                    Carburant: <?php echo ucfirst($value['fuel_type']) ?><br>
+                                    Km: <?php echo ucfirst($value['global_km']) ?></p>
+                            </div>
+                            <div class='col-md-4 pull-right'>
+                                <form class='m-bottom-10 p' method='post' action='?manage_vehicle=<?php echo $value['vehicle_id'] ?>'>
+                                    <button title='Ajouter un parcours'  type='submit' class='btn btn-success' name='manage_vehicle' value='<?php echo $value['vehicle_id'] ?>'>
+                                        <span class='glyphicon glyphicon-edit'></span>
+                                    </button>
+                                </form>
+                                <form class='m-bottom-10' method='post' action='?stats=<?php echo $value['vehicle_id'] ?>'>
+                                    <button title='Voir les statistiques' type='submit' class='btn btn-info' name='stats' value='<?php $_SESSION['vehicle']['vehicle_id'] ?>'>
+                                        <span class='glyphicon glyphicon-signal'></span>
+                                    </button>
+                                </form>
+                                <form method='post' onSubmit='return check_delete()'>
+                                    <button title='Supprimer' type='submit' class='btn btn-danger' name='vehicle_2_delete' value='<?php echo $value['vehicle_id'] ?>'>
+                                        <span class='glyphicon glyphicon-remove'></span>
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                <?php endforeach; ?>
+            </div>
+            <?php
+        else :
+            if (is_string($vehicle_list)) :
+                print "<div class='alert alert-info'><p>" . $vehicle_list . "</p></div>";
+            endif;
+        endif;
+        ?>
     </div>
-    <?php
-else :
-    if (is_string($vehicle_list)) :
-        print "<div class='alert alert-info'><p>" . $vehicle_list . "</p></div>";
-    endif;
-endif;
-include_once 'forms/add_vehicle_form.html';
+</div>
+<div class="panel panel-default">
+    <div class="panel-heading">Ajouter un véhicule</div>
+    <div class="panel-body">
+        <?php
+        include_once 'forms/add_vehicle_form.html';
+        ?>
+    </div>
+</div>
+

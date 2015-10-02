@@ -1,19 +1,39 @@
 <?php
 ## views/stats.tpl.php
 ?>
-
-<h3>Gérer votre <?php echo $vehicle_object->getBrand() ." ". $vehicle_object->getModel(); ?></h3>
-<h4>Kilométrage total: <?php echo $vehicle_object->getGlobal_km(); ?> km</h4>
-<div class="alert alert-success">
-    <p>Consommation moyenne: <strong><?php echo $average_conso; ?></strong> litres/100km</p>
-    <p>Coût moyen: <strong><?php echo $price_per_km; ?></strong> €/km</p>
+<div class="panel panel-default">
+    <div class="panel-heading">
+        Toutes les stats de votre 
+        <span class='text-primary'><?php echo ucfirst($vehicle_object->getBrand()) . " " . ucfirst($vehicle_object->getModel()); ?></span>
+    </div>
+    <div class="panel-body">
+        <p class="text-info">Les moyennes:</p>
+        <ul class="list-group">
+            <li class="list-group-item">
+                <span class="badge"><?php echo $average_conso; ?> litres/100km</span>
+                Consommation moyenne:
+            </li>
+            <li class="list-group-item">
+                <span class="badge"><?php echo $price_per_km; ?> €/km</span>
+                Coût moyen:
+            </li>
+        </ul>
+        <p class="text-info">Depuis le <?php echo $first_date; ?>:</p>
+        <ul class="list-group">
+            <li class="list-group-item">
+                <span class="badge"><?php echo $global_distance; ?> km</span>
+                Kilométrage parcourus:
+            </li>
+            <li class="list-group-item">
+                <span class="badge"><?php echo $global_conso; ?> litres</span>
+                Quantité de carburant consommé:
+            </li>
+            <li class="list-group-item">
+                <span class="badge"><?php echo $global_price; ?> €</span>
+                Coût total:
+            </li>
+        </ul>
+        <p>Date d'enregistrement du dernier plein: <strong><?php echo $last_modif; ?></strong><br>Kilométrage total du véhicule: <strong><?php echo $vehicle_object->getGlobal_km(); ?> km</strong></p>
+        <a href="/?profil" class="btn btn-info pull-right">Retour</a>
+    </div>
 </div>
-<div class="alert alert-info">
-    <h4>Depuis le <?php echo $first_date; ?>:</h4>
-    <p><strong><?php echo $global_distance; ?></strong> km parcourus,<br>
-        <strong><?php echo $global_conso; ?></strong> litres de carburant consommés,<br>
-        pour un coût global de <strong><?php echo $global_price; ?></strong> €uros.</p>
-    <p>Date d'enregistrement du dernier plein: <strong><?php echo $last_modif; ?></strong></p>
-</div>
-
-

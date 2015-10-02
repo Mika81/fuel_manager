@@ -11,6 +11,14 @@ footer{
     text-align: center;
 }
 
+.m-bottom-10{
+    margin-bottom: 10px;
+}
+
+.m-bottom-20{
+    margin-bottom: 20px;
+}
+
 .m-bottom-50{
     margin-bottom: 50px;
 }
