@@ -28,8 +28,8 @@
                                     Carburant: <?php echo ucfirst($value['fuel_type']) ?><br>
                                     Km: <?php echo ucfirst($value['global_km']) ?></p>
                             </div>
-                            <div class='col-md-4 pull-right'>
-                                <form class='m-bottom-10 p' method='post' action='?manage_vehicle=<?php echo $value['vehicle_id'] ?>'>
+                            <div class='col-md-4 text-right'>
+                                <form class='m-bottom-10' method='post' action='?manage_vehicle=<?php echo $value['vehicle_id'] ?>'>
                                     <button title='Ajouter un parcours'  type='submit' class='btn btn-success' name='manage_vehicle' value='<?php echo $value['vehicle_id'] ?>'>
                                         <span class='glyphicon glyphicon-edit'></span>
                                     </button>
