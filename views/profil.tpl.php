@@ -6,7 +6,7 @@
     <div class="panel-heading">Mes coordonnées<a href='#'><span class='pull-right glyphicon glyphicon-edit'></span></a></div>
     <div class="panel-body">
         <p>Nom : <?php print ucfirst($_SESSION['user']['alias']); ?></p>
-        <p>E-mail : <?php print ucfirst($_SESSION['user']['email']); ?></p>
+        <p>E-mail : <?php print $_SESSION['user']['email']; ?></p>
         <p>Adresse : <?php print ucfirst($_SESSION['user']['address']); ?></p>
     </div>
 </div>
