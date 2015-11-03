@@ -19,9 +19,9 @@ if (isset($_GET['stats']) && !empty($_GET['stats'])) :
             endif;
             $first_date = $trip_manager->getFirstDate($vehicle_object)->date;
             $global_distance = number_format($trip_manager->getDistanceTotal($vehicle_object)->distance, 2);
-            $global_conso = $trip_manager->getGlobalConso($vehicle_object)->fuel_quantity;
+            $global_conso = number_format($trip_manager->getGlobalConso($vehicle_object)->fuel_quantity, 2);
             $average_conso = number_format((100 * $global_conso)/ $global_distance, 2);
-            $global_price = $trip_manager->getGlobalPrice($vehicle_object)->fuel_price;
+            $global_price = number_format($trip_manager->getGlobalPrice($vehicle_object)->fuel_price, 2);
             $price_per_km = number_format($global_price/$global_distance, 2);
         else :
             header('Location:http://' . BASE_URL .'/?profil&error=stats');
