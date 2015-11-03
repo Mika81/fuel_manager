@@ -41,7 +41,11 @@ class VehicleManager {
         $query->execute();
         $data = $query->fetch(PDO::FETCH_ASSOC);
         $query->closeCursor();
-        return new Vehicle($data);
+        if(is_array($data)):
+            return new Vehicle($data);
+        else:
+            return false;
+        endif;
     }
 
     public function getList($user_id) {
