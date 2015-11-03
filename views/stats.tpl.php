@@ -33,7 +33,7 @@
                 Coût total:
             </li>
         </ul>
-        <p>Date d'enregistrement du dernier plein: <strong><?php echo $last_modif; ?></strong><br>Kilométrage total du véhicule: <strong><?php echo $vehicle_object->getGlobal_km(); ?> km</strong></p>
+        <p>Date d'enregistrement du dernier plein: <strong><?php echo $last_modif; ?></strong><br>Kilométrage total du véhicule au dernier plein: <strong><?php echo $vehicle_object->getGlobal_km(); ?> km</strong></p>
         <a href="/?profil" class="btn btn-info pull-right">Retour</a>
     </div>
 </div>
