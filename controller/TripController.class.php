@@ -23,12 +23,18 @@ if (isset($_GET['stats']) && !empty($_GET['stats'])) :
                     if ($data !== false):
                         $last_modif = $date['date'];
                     endif;
-                    $first_date = $trip_manager->getFirstDate($vehicle_object)->date;
-                    $global_distance = number_format($trip_manager->getDistanceTotal($vehicle_object)->distance, 2);
-                    $global_conso = number_format($trip_manager->getGlobalConso($vehicle_object)->fuel_quantity, 2);
-                    $average_conso = number_format((100 * $global_conso) / $global_distance, 2);
-                    $global_price = number_format($trip_manager->getGlobalPrice($vehicle_object)->fuel_price, 2);
-                    $price_per_km = number_format($global_price / $global_distance, 2);
+                    $first_date_full = $trip_manager->getFirstDate($vehicle_object)->date;
+                    $global_distance_full = $trip_manager->getDistanceTotal($vehicle_object)->distance;
+                    $global_conso_full = $trip_manager->getGlobalConso($vehicle_object)->fuel_quantity;
+                    $average_conso_full = (100 * $global_conso_full) / $global_distance_full;
+                    $global_price_full = $trip_manager->getGlobalPrice($vehicle_object)->fuel_price;
+                    $price_per_km_full = $global_price_full / $global_distance_full;
+                    $first_date = number_format($first_date_full, 2);
+                    $global_distance = number_format($global_distance_full, 2);
+                    $global_conso = number_format($global_conso_full, 2);
+                    $average_conso = number_format($average_conso_full, 2);
+                    $global_price = number_format($global_price_full, 2);
+                    $price_per_km = number_format($price_per_km_full, 2);
                 else :
                     header('Location:http://' . BASE_URL . '/?profil&error=stats');
                 endif;
