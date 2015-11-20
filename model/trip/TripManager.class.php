@@ -116,8 +116,17 @@ class TripManager {
         return $data;
     }
 
-    public function getList() {
-        
+    public function getList(Vehicle $vehicle) {
+        $query = $this->db->prepare('SELECT * FROM trip '
+		. 'WHERE vehicle_id = :vehicle_id '
+		. 'ORDER BY trip_id '
+		. 'DESC '
+		. 'LIMIT 0, 10');
+        $query->bindValue(':vehicle_id', $vehicle->getVehicle_id(), PDO::PARAM_INT);
+        $query->execute();
+        $data = $query->fetchAll(PDO::FETCH_ASSOC);
+        $query->closeCursor();
+        return $data;
     }
 
     /* ----------UPDATE */

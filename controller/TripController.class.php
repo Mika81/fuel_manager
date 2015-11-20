@@ -34,6 +34,7 @@ if (isset($_GET['stats']) && !empty($_GET['stats'])) :
                     $average_conso = number_format($average_conso_full, 2);
                     $global_price = number_format($global_price_full, 2);
                     $price_per_km = number_format($price_per_km_full, 2);
+		    $trip_list = $trip_manager->getList($vehicle_object);
                 else :
                     header('Location:http://' . BASE_URL . '/?profil&error=stats');
                 endif;

@@ -34,6 +34,26 @@
             </li>
         </ul>
         <p>Date d'enregistrement du dernier plein: <strong><?php echo $last_modif; ?></strong><br>Kilométrage total du véhicule au dernier plein: <strong><?php echo $vehicle_object->getGlobal_km(); ?> km</strong></p>
+	<p class="text-info">Détails des 10 derniers parcours:</p>
+	    <table class="table table-striped">
+		<thead>
+		  <tr>
+		    <th>Date de fin de parcours</th>
+		    <th>Distance parcourue en km</th>
+		    <th>Carburant consommé en litres</th>
+		    <th>Coût du parcours en €</th>
+		  </tr>
+		</thead>
+		<tbody>
+		<?php
+		foreach($trip_list as $key => $value){
+			echo '<tr>';
+			echo '<th scope="row">'. date('d/m/Y', strtotime($value['date'])) .'</th><td>'. $value['distance'] .'</td><td>'. $value['fuel_quantity'] .'</td><td>'. $value['fuel_price'] .'</td>';
+			echo '</tr>';
+		}
+		?>
+		</tbody>
+	    </table>
         <a href="/?profil" class="btn btn-info pull-right">Retour</a>
     </div>
 </div>
